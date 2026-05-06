@@ -1,0 +1,21 @@
+asgiref==3.11.1
+dj-rest-auth==2.2.6
+Django==5.2.13
+django-cors-headers==4.9.0
+# django-debug-toolbar==6.3.0
+django-debug-toolbar>=4.4.6
+djangorestframework==3.14.0
+drf-yasg==1.21.7
+inflection==0.5.1
+packaging==26.2
+pillow==12.2.0
+psycopg2-binary==2.9.10
+python-decouple==3.8
+pytz==2026.1.post1
+PyYAML==6.0.3
+ruamel.yaml==0.18.17
+ruamel.yaml.clib==0.2.15
+sqlparse==0.5.5
+uritemplate==4.2.0
+# setuptools is required for installing the package, but it is not a direct dependency of the project. It is included here to ensure that the correct version is used during installation.
+setuptools==70.0.0
