@@ -12,7 +12,7 @@
 
 <div align="center">
   <h3>
-    <a href="DEPLOY_SONRASI_BURAYA_LINK_GELECEK">
+    <a href="https://umit8100.pythonanywhere.com/swagger/">
       🖥️ Live Demo (Swagger)
     </a>
      | 
@@ -23,7 +23,7 @@
 </div>
 
 <p align="center">
-  <a href="DEPLOY_SONRASI_BURAYA_LINK_GELECEK">
+  <a href="https://umit8100.pythonanywhere.com/swagger/">
     <img src="./assets/personnel-api.gif" alt="Interactive Swagger Documentation" width="700"/>
   </a>
 </p>
@@ -38,8 +38,8 @@
 
 ## 🚀 Live API Documentation
 The API is fully documented and interactive. Note: Swagger and Redoc are accessible without login for demonstration purposes.
-* **Swagger UI:** [DEPLOY_SONRASI_LİNK]
-* **ReDoc:** [DEPLOY_SONRASI_LİNK]
+* **Swagger UI:** [https://umit8100.pythonanywhere.com/swagger/](https://umit8100.pythonanywhere.com/swagger/)
+* **ReDoc:** [[DEPLOY_SONRASI_LİNK](https://umit8100.pythonanywhere.com/redoc/)]
 
 > **Note:** In production mode (`ENV_NAME=prod`), Swagger documentation is automatically hidden for security best practices.
 
