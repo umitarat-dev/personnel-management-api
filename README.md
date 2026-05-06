@@ -39,7 +39,7 @@
 ## 🚀 Live API Documentation
 The API is fully documented and interactive. Note: Swagger and Redoc are accessible without login for demonstration purposes.
 * **Swagger UI:** [https://umit8100.pythonanywhere.com/swagger/](https://umit8100.pythonanywhere.com/swagger/)
-* **ReDoc:** [[DEPLOY_SONRASI_LİNK](https://umit8100.pythonanywhere.com/redoc/)]
+* **ReDoc:** [https://umit8100.pythonanywhere.com/redoc/](https://umit8100.pythonanywhere.com/redoc/)]
 
 > **Note:** In production mode (`ENV_NAME=prod`), Swagger documentation is automatically hidden for security best practices.
 
