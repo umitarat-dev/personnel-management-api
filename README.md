@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/Container-Docker-2496ED?style=flat&logo=docker&logoColor=white" />
 </p>
 
-<h1 align="center">📝 Personnel Management API</h1>
+<h1 align="center">👤 Personnel Management API</h1>
 
 <p align="center"><strong>A professional, production-ready REST API for modern personnel and department tracking systems 🚀</strong></p>
 
