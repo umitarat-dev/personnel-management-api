@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # DEBUG = True
 
 ALLOWED_HOSTS = ['*'] # yada aşağıdaki gibi yazmalıyız, debug False ise
-# ALLOWED_HOSTS = ['127.0.0.1',] 
+# ALLOWED_HOSTS = ['127.0.0.1',]
 
 
 # Application definition
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # my apps
     'users',
     'personnel',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -137,57 +137,57 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# INTERNAL_IPS = [ 
-#     "127.0.0.1", 
+# INTERNAL_IPS = [
+#     "127.0.0.1",
 # ]
 
 
-LOGGING = { 
-    "version": 1, 
-    # is set to True then all loggers from the default configuration will be disabled. 
-    "disable_existing_loggers": True, 
-    # Formatters describe the exact format of that text of a log record.  
-    "formatters": { 
-        "standard": { 
-            "format": "[%(levelname)s] %(asctime)s %(name)s: %(message)s" 
-        }, 
-        'verbose': { 
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}', 
-            'style': '{', 
-        }, 
-        'simple': { 
-            'format': '{levelname} {message}', 
-            'style': '{', 
-        }, 
-    }, 
-    # The handler is the engine that determines what happens to each message in a logger. 
-    # It describes a particular logging behavior, such as writing a message to the screen,  
-    # to a file, or to a network socket. 
-    "handlers": { 
-        "console": { 
-            "class": "logging.StreamHandler", 
-            "formatter": "standard", 
-            "level": "INFO", 
-            "stream": "ext://sys.stdout", 
-            }, 
-        'file': { 
-            'class': 'logging.FileHandler', 
-            "formatter": "verbose", 
-            'filename': './debug.log', 
-            'level': 'INFO', 
-        }, 
-    }, 
-    # A logger is the entry point into the logging system. 
-    "loggers": { 
-        "django": { 
-            "handlers": ["console", 'file'], 
-            # log level describes the severity of the messages that the logger will handle.  
-            "level": config("DJANGO_LOG_LEVEL"), 
-            'propagate': True, 
-            # If False, this means that log messages written to django.request  
-            # will not be handled by the django logger. 
-        }, 
-    }, 
+LOGGING = {
+    "version": 1,
+    # is set to True then all loggers from the default configuration will be disabled.
+    "disable_existing_loggers": True,
+    # Formatters describe the exact format of that text of a log record.
+    "formatters": {
+        "standard": {
+            "format": "[%(levelname)s] %(asctime)s %(name)s: %(message)s"
+        },
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    # The handler is the engine that determines what happens to each message in a logger.
+    # It describes a particular logging behavior, such as writing a message to the screen,
+    # to a file, or to a network socket.
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "standard",
+            "level": "INFO",
+            "stream": "ext://sys.stdout",
+            },
+        'file': {
+            'class': 'logging.FileHandler',
+            "formatter": "verbose",
+            'filename': './debug.log',
+            'level': 'INFO',
+        },
+    },
+    # A logger is the entry point into the logging system.
+    "loggers": {
+        "django": {
+            "handlers": ["console", 'file'],
+            # log level describes the severity of the messages that the logger will handle.
+            "level": config("DJANGO_LOG_LEVEL"),
+            'propagate': True,
+            # If False, this means that log messages written to django.request
+            # will not be handled by the django logger.
+        },
+    },
 }
 
 REST_FRAMEWORK = {
@@ -197,14 +197,44 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',   
+    'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',
 }
 
 MEDIA_URL = "/media/"
 # MEDIA_ROOT = BASE_DIR
 MEDIA_ROOT = BASE_DIR / "pictures"
-# STATIC_ROOT = BASE_DIR / STATIC_URL
+STATIC_ROOT = BASE_DIR / STATIC_URL
 
 
 # Geliştirme aşamasında Swagger testleri için tüm kökenlere izin veriyoruz
 CORS_ALLOW_ALL_ORIGINS = True  # Test aşaması için
+
+# PythonAnywhere adresini güvenilir kökenlere ekleyelim
+CSRF_TRUSTED_ORIGINS = [
+    "https://umit8100.pythonanywhere.com",
+    "http://umit8100.pythonanywhere.com",
+]
+
+
+# base.py
+SWAGGER_SETTINGS = {
+    'DEFAULT_API_URL': 'https://umit8100.pythonanywhere.com',
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+}
+
+# base.py içinde en alta ekle
+if not config('DEBUG', default=True, cast=bool):
+    # Bu ayarlar sadece canlı ortamda (DEBUG=False iken) çalışır
+    DEBUG = False
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_X_FORWARDED_HOST = True

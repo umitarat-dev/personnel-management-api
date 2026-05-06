@@ -31,11 +31,8 @@ from decouple import config # Çevre değişkenlerini okumak için
 class JWTSchemaGenerator(OpenAPISchemaGenerator):
     def get_schema(self, request=None, public=False):
         schema = super().get_schema(request, public)
-        # Şemaları ortam ayarlarına göre belirle[cite: 2]
-        if settings.DEBUG:
-            schema.schemes = ["http"]
-        else:
-            schema.schemes = ["https"]
+        # PythonAnywhere'de her zaman HTTPS protokolünü önceliklendirelim
+        schema.schemes = ["https", "http"]
 
         # Güvenlik tanımlamalarını ekle[cite: 2]
         schema.security_definitions = {
@@ -48,7 +45,7 @@ class JWTSchemaGenerator(OpenAPISchemaGenerator):
         }
         schema.security = [{"Token": []}]
         return schema
-    
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Personnel Management API",
@@ -86,8 +83,7 @@ if settings.DEBUG and "debug_toolbar" in settings.INSTALLED_APPS:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
-    
+
 # 4. Media Dosyaları (Sadece Geliştirme Aşamasında)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    
